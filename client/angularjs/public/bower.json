@@ -1,0 +1,20 @@
+{
+  "name": "angularjs",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "luketevl"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/luketevl/test-full-stack-strider",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lf-ng-md-file-input": "^1.4.8"
+  }
+}

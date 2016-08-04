@@ -1,15 +1,20 @@
 <md-subheader class="md-no-sticky">Todos </md-subheader>
   <form name="todosForm">
     <md-list-item ng-repeat="todo in todos" ng-click="doCompleteAction($index, todo)">
+      <md-input-container>
         <img alt="{{ todo.name }}" ng-src="{{ todo.img }}" class="md-avatar" ng-click="doPhotoAction($event, todo)" />
-
+      </md-input-container>
         <md-input-container md-no-float class="md-block" flex-gt-sm>
           <input ng-model="todo.name" ng-disabled="todo.complete" />
         </md-input-container>
-        <md-checkbox class="md-secondary" ng-model="todo.complete"></md-checkbox>
-        <ng-md-icon icon="photo" ng-click="doPhotoAction($event, todo)" aria-label="Photo image" class="md-secondary md-hue-3"></ng-md-icon>
-        <ng-md-icon icon="edit" ng-click="doEditAction($event, todo)" aria-label="Edit todo" class="md-secondary md-hue-3"></ng-md-icon>
-        <ng-md-icon icon="delete" ng-click="doDeleteAction($index)" aria-label="Delete todo" class="md-secondary md-hue-3"></ng-md-icon>
+        <md-input-container>
+          <lf-ng-md-file-input lf-files="files" preview></lf-ng-md-file-input>
+        </md-input-container>
+        <md-input-container>
+          <md-checkbox class="md-secondary" ng-model="todo.complete"></md-checkbox>
+          <ng-md-icon icon="photo" ng-click="doPhotoAction($event, todo)" aria-label="Photo image" class="md-secondary md-hue-3"></ng-md-icon>
+          <ng-md-icon icon="delete" ng-click="doDeleteAction($index)" aria-label="Delete todo" class="md-secondary md-hue-3"></ng-md-icon>
+        </md-input-container>
       </md-list-item>
       <md-button class="md-fab md-fab-bottom-right md-button" aria-label="Add new todo" ng-click="doAddAction()">
         <ng-md-icon icon="add"></ng-md-icon>

@@ -13,6 +13,7 @@ This client is a TODO list
 ###  Install Dependencies
 ```
 npm install
+bower install
 ```
 
 ### Server

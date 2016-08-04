@@ -1,2 +1,2 @@
 'use strict';
-angular.module('app',['ngRoute', 'ngMaterial', 'ngMessages', 'ngMdIcons']);
+angular.module('app',['ngRoute', 'ngMaterial', 'ngMessages', 'ngMdIcons','lfNgMdFileInput']);

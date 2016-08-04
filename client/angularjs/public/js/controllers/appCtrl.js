@@ -62,5 +62,16 @@
     });
   };
 
+  $scope.$watch('files.length',function(newVal,oldVal){
+    console.log($scope.files);
+   });
+
+   $scope.onSubmit = function(){
+            var formData = new FormData();
+            angular.forEach($scope.files,function(obj){
+                formData.append('files[]', obj.lfFile);
+            });
+            console.log(formData);
+        };
   }
 })();
