@@ -35,6 +35,7 @@ module.exports = (app) => {
   app.put('/api/v1/todo/', (req, res) => {
     let data = req.body;
     let {name, checked, _id} = data;
+    console.log(_id, name, checked);
     Todo.findByIdAndUpdate(_id, {name, checked}, function(err, todo) {
       if (err){
         res.status(500).json(err);
@@ -49,6 +50,11 @@ module.exports = (app) => {
   // ROUTE to API FUEL
   app.post('/api/v1/todo', (req, res) => {
     let data = req.body;
+    let {name, checked, _id} = data;
+    data = {
+      name,
+      checked
+    }
     let todo = new Todo(data);
     todo.save().then((result, err) =>{
       console.log(err);
