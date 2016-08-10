@@ -4,17 +4,10 @@
   angular.module('app').factory('todoAPIService', todoService);
 
   function todoService($http, config){
-    var config_http = {
-      headers: {
-        'Authorization': "Basic " + config.AUTHORIZATION,
-      },
-      "withCredentials" : false,
-    };
     /**
       * GET todo
       * @author lukete
-      * @param estate
-      * @since 18/07/16
+      * @param todo
       * @return $http response
     **/
     var _get = function() {
@@ -24,16 +17,36 @@
     /**
       * ADD todo
       * @author lukete
-      * @param estate
-      * @since 27/07/16
+      * @param todo
       * @return $http response
     **/
-    var _add = function(estate) {
-      return $http.post(config.URL_REST, estate);
+    var _add = function(todo) {
+      return $http.post(config.URL_REST, todo);
+    };
+
+    /**
+      * DELETE todo
+      * @author lukete
+      * @param todo
+      * @return $http response
+    **/
+    var _delete = function(_id) {
+      return $http.delete(config.URL_REST+`/${_id}`);
+    };
+    /**
+      * EDIT todo
+      * @author lukete
+      * @param todo
+      * @return $http response
+    **/
+    var _edit = function(todo) {
+      return $http.put(config.URL_REST, todo);
     };
     return {
       get: _get,
       add: _add,
+      edit: _edit,
+      delete: _delete,
     }
   }
 })();

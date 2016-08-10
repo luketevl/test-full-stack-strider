@@ -1,19 +1,22 @@
 <md-subheader class="md-no-sticky">Todos </md-subheader>
   <form name="todosForm">
-    <md-list-item ng-repeat="todo in todos" ng-click="doCompleteAction($index, todo)">
+    <md-list-item ng-repeat="todo in todos" ng-click="doCompleteAction($index, todo, true)" aria-label="Option check the todo">
       <md-input-container>
-        <img alt="{{ todo.name }}" ng-src="{{ todo.img }}" class="md-avatar" ng-click="doPhotoAction($event, todo)" />
+        <div ngf-drop ngf-select ng-model="files" class="drop-box"
+        ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+        accept="image/*"
+        ngf-pattern="'image/*'">
+          <img alt="{{ todo.name }}" ng-src="{{ todo.img }}" class="md-avatar" ng-click="doPhotoAction($event, todo)" aria-label="Todo photo" />
+        </div>
+
       </md-input-container>
         <md-input-container md-no-float class="md-block" flex-gt-sm>
-          <input ng-model="todo.name" ng-disabled="todo.complete" />
+          <input ng-model="todo.name" ng-disabled="todo.checked" ng-keyup="doKeyup($index, todo)" aria-label="Input for todo name" />
         </md-input-container>
         <md-input-container>
-          <lf-ng-md-file-input lf-files="files" preview></lf-ng-md-file-input>
-        </md-input-container>
-        <md-input-container>
-          <md-checkbox class="md-secondary" ng-model="todo.complete"></md-checkbox>
+          <md-checkbox class="md-secondary" ng-model="todo.checked" ng-change="doCompleteAction($index, todo, false)" aria-label="Option check the todo"></md-checkbox>
           <ng-md-icon icon="photo" ng-click="doPhotoAction($event, todo)" aria-label="Photo image" class="md-secondary md-hue-3"></ng-md-icon>
-          <ng-md-icon icon="delete" ng-click="doDeleteAction($index)" aria-label="Delete todo" class="md-secondary md-hue-3"></ng-md-icon>
+          <ng-md-icon icon="delete" ng-click="doDeleteAction($index, todo)" aria-label="Delete todo" class="md-secondary md-hue-3"></ng-md-icon>
         </md-input-container>
       </md-list-item>
       <md-button class="md-fab md-fab-bottom-right md-button" aria-label="Add new todo" ng-click="doAddAction()">
