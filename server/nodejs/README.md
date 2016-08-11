@@ -4,7 +4,8 @@
 - moongose
 
 ## Install the mongodb and RUN
-- https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-os-x/
+- Example
+  - https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-os-x/
 
 ## Install dependencies
 ```
@@ -41,3 +42,11 @@ nodejs server
 
 ### Observations
 - CORS **enabled**
+- Case have an problem to starter the **mongo** database use:
+```
+mongod --dbpath <local user path>
+```
+- Case have problem to upload image set your **/tmp** folder to 777
+   - Error reference
+  > errno: -2,
+    code: 'ENOENT',

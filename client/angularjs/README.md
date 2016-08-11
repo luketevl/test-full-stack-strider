@@ -11,6 +11,7 @@ This client is a TODO list
 
 ## Initialize
 ###  Install Dependencies
+- Go to the **public** folder
 ```
 npm install
 bower install

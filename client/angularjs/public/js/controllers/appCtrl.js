@@ -6,7 +6,6 @@
   appCtrl.$inject = ['$scope', '$mdSidenav', '$mdDialog', 'toastService', 'todoAPIService', 'Upload', '$timeout', 'config'];
 
   function appCtrl($scope, $mdSidenav, $mdDialog, toastService, todoAPIService, Upload, $timeout, config){
-    $scope.todoNow='';
     let intervalKeyup ="";
     $scope.openMenu = function() {
     $mdSidenav('right').toggle();
@@ -56,8 +55,10 @@
       }
 			intervalKeyup = setTimeout(function(){
 				intervalKeyup ="";
-				$scope.doEditAction(index, todo);
-			}, 500);
+        if(todo.name){
+          $scope.doEditAction(index, todo);
+        }
+			}, 800);
   };
 
   $scope.doSaveAction = function(index, todo){
@@ -80,8 +81,7 @@
   };
 
 
-  $scope.doPhotoAction = function(event, todo) {
-    $scope.todoNow= todo;
+  $scope.doPhotoShow = function(todo) {
     $mdDialog.show(
       $mdDialog.alert()
         .title('Photo')
@@ -94,54 +94,36 @@
     });
   };
 
-
-  $scope.$watch('files', function () {
-          $scope.upload($scope.files);
-      });
-      $scope.$watch('file', function () {
-          if ($scope.file != null) {
-              $scope.files = [$scope.file];
-          }
-      });
       $scope.log = '';
-
-      $scope.upload = function (files) {
-        console.log('efwefewffw');
-          if (files && files.length) {
-              for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                if (!file.$error) {
+      $scope.uploadFiles = function(file, errFiles, todo) {
+        console.log(file);
+        console.log(todo);
+              $scope.f = file;
+              $scope.errFile = errFiles && errFiles[0];
+              if (file) {
                   let method = 'POST';
-                  if($scope.todonow._id){
+                  if(todo._id){
                     method= 'PUT';
                   }
-                  Upload.upload({
+                  file.upload = Upload.upload({
                       url: config.URL_REST,
                       method,
-                      data: {
-                        todo: $scope.todoNow,
-                        file
-                      }
-                  }).then(function (resp) {
-                      $timeout(function() {
-                        console.log(resp);
-                          $scope.log = 'file: ' +
-                          resp.config.data.file.name +
-                          ', Response: ' + JSON.stringify(resp.data) +
-                          '\n' + $scope.log;
-                      });
-                  }, null, function (evt) {
-                    console.log(evt);
-                      var progressPercentage = parseInt(100.0 *
-                      		evt.loaded / evt.total);
-                      $scope.log = 'progress: ' + progressPercentage +
-                      	'% ' + evt.config.data.file.name + '\n' +
-                        $scope.log;
+                      data: todo,
+                      file: file
                   });
-                }
-              }
-          }
-      };
 
+                  file.upload.then(function (response) {
+                      $timeout(function () {
+                          file.result = response.data;
+                      });
+                  }, function (response) {
+                      if (response.status > 0)
+                          $scope.errorMsg = response.status + ': ' + response.data;
+                  }, function (evt) {
+                      file.progress = Math.min(100, parseInt(100.0 *
+                                               evt.loaded / evt.total));
+                  });
+              }
+          };
   }
 })();
