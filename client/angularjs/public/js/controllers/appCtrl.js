@@ -82,17 +82,20 @@
 
 
   $scope.doPhotoShow = function(todo) {
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
-        $rootScope.todo_img = todo;
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl: 'views/photo.html',
-        parent: angular.element(document.body),
-        clickOutsideToClose:true,
-        fullscreen: useFullScreen
-      }).finally(function(){
+    if(todo.img){
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+      $rootScope.todo_img = todo;
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'views/photo.html',
+      parent: angular.element(document.body),
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen
+    }).finally(function(){
 
     });
+    }
+
   };
 
       $scope.log = '';
@@ -125,6 +128,8 @@
               }
           };
   }
+
+DialogController.$inject = ['$scope', '$rootScope', '$mdDialog'];
 function DialogController($scope, $rootScope, $mdDialog) {
   $scope.todo = $rootScope.todo_img;
   console.log($scope.todo);
