@@ -3,9 +3,9 @@
 
   angular.module('app').controller('appCtrl', appCtrl);
 
-  appCtrl.$inject = ['$scope', '$mdSidenav', '$mdDialog', 'toastService', 'todoAPIService', 'Upload', '$timeout', 'config', '$mdMedia'];
+  appCtrl.$inject = ['$scope', '$mdSidenav', '$mdDialog', 'toastService', 'todoAPIService', 'Upload', '$timeout', 'config', '$mdMedia', '$rootScope'];
 
-  function appCtrl($scope, $mdSidenav, $mdDialog, toastService, todoAPIService, Upload, $timeout, config, $mdMedia){
+  function appCtrl($scope, $mdSidenav, $mdDialog, toastService, todoAPIService, Upload, $timeout, config, $mdMedia, $rootScope){
     let intervalKeyup ="";
     $scope.openMenu = function() {
     $mdSidenav('right').toggle();
@@ -83,10 +83,9 @@
 
   $scope.doPhotoShow = function(todo) {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
-        $scope.photo_todo = todo;
+        $rootScope.todo_img = todo;
       $mdDialog.show({
-        controller: appCtrl,
-
+        controller: DialogController,
         templateUrl: 'views/photo.html',
         parent: angular.element(document.body),
         clickOutsideToClose:true,
@@ -126,4 +125,11 @@
               }
           };
   }
+function DialogController($scope, $rootScope, $mdDialog) {
+  $scope.todo = $rootScope.todo_img;
+  console.log($scope.todo);
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+}
 })();

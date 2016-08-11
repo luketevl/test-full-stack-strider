@@ -2,7 +2,7 @@
 
 ## The Project
 
-This is Project have any version to server and cliente:
+This is Project have any version to server and client:
 
 #### Server
 - nodejs

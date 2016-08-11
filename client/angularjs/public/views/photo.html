@@ -1,14 +1,17 @@
-<md-dialog aria-label="{{photo_todo.name}}"  ng-cloak>
+<md-dialog aria-label="{{todo.name}}"  ng-cloak>
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>{{photo_todo.name}}</h2>
+        <h2>{{todo.name}}</h2>
         <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <ng-md-icon icon="close"></ng-md-icon>
+        </md-button>
       </div>
     </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
-        <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="{{photo_todo.img}}">
+        <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="{{todo.img}}">
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">

@@ -21,9 +21,7 @@ module.exports = (app) => {
         res.status(500).json(err);
         throw err;
       }
-      console.log('Selected');
       let new_todos = todos.map(todo => {
-        console.log(333333, todo);
         return {
             _id: todo._id,
             name: todo.name,
@@ -31,7 +29,6 @@ module.exports = (app) => {
             img: todosCtrl.getFile(todo)
         };
       });
-      console.log(new_todos);
       res.status(202).json(new_todos);
     });
     // How we are using JSON the response use the function json
