@@ -3,9 +3,9 @@
 
   angular.module('app').controller('appCtrl', appCtrl);
 
-  appCtrl.$inject = ['$scope', '$mdSidenav', '$mdDialog', 'toastService', 'todoAPIService', 'Upload', '$timeout', 'config'];
+  appCtrl.$inject = ['$scope', '$mdSidenav', '$mdDialog', 'toastService', 'todoAPIService', 'Upload', '$timeout', 'config', '$mdMedia'];
 
-  function appCtrl($scope, $mdSidenav, $mdDialog, toastService, todoAPIService, Upload, $timeout, config){
+  function appCtrl($scope, $mdSidenav, $mdDialog, toastService, todoAPIService, Upload, $timeout, config, $mdMedia){
     let intervalKeyup ="";
     $scope.openMenu = function() {
     $mdSidenav('right').toggle();
@@ -63,7 +63,7 @@
 
   $scope.doSaveAction = function(index, todo){
       todoAPIService.add(todo).then((result) => {
-        $scope.todos[index] = result.data.result;
+        $scope.todos[index] = result.data.todo;
         msgSucess();
       }).catch((error) => {
         console.log(error);
@@ -82,20 +82,22 @@
 
 
   $scope.doPhotoShow = function(todo) {
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title('Photo')
-        .textContent('')
-        .ariaLabel('')
-        .ok('Close')
-        .targetEvent(event)
-    ).finally(function(){
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+        $scope.photo_todo = todo;
+      $mdDialog.show({
+        controller: appCtrl,
+        
+        templateUrl: 'views/photo.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen
+      }).finally(function(){
 
     });
   };
 
       $scope.log = '';
-      $scope.uploadFiles = function(file, errFiles, todo) {
+      $scope.uploadFiles = function(file, errFiles, index, todo) {
         console.log(file);
         console.log(todo);
               $scope.f = file;
@@ -114,14 +116,15 @@
 
                   file.upload.then(function (response) {
                       $timeout(function () {
-                          file.result = response.data;
+                        console.log(response);
+                          file.result = response.data.todo;
+                          $scope.todos[index].img = response.data.todo.img;
                       });
                   }, function (response) {
                       if (response.status > 0)
-                          $scope.errorMsg = response.status + ': ' + response.data;
+                          console.log(response.status + ': ' + response.data);
                   }, function (evt) {
-                      file.progress = Math.min(100, parseInt(100.0 *
-                                               evt.loaded / evt.total));
+                    console.log(evt);
                   });
               }
           };

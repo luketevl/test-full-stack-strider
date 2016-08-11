@@ -3,7 +3,7 @@
 // Creating base routes
 const express     = require('express');
 const bodyParser  = require('body-parser');
-
+const path        = require('path');
 // Creating APP
 const app = express();
 
@@ -11,6 +11,9 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 // parse application/json
 app.use(bodyParser.json());
+
+// STATIC FILES
+app.use(express.static(path.join(__dirname, 'uploads/images/')));
 
 // Allow CORS
 var allowCrossDomain = function(req, res, next) {
