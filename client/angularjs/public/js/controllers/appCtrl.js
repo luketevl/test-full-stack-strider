@@ -86,7 +86,7 @@
         $scope.photo_todo = todo;
       $mdDialog.show({
         controller: appCtrl,
-        
+
         templateUrl: 'views/photo.html',
         parent: angular.element(document.body),
         clickOutsideToClose:true,
@@ -98,8 +98,6 @@
 
       $scope.log = '';
       $scope.uploadFiles = function(file, errFiles, index, todo) {
-        console.log(file);
-        console.log(todo);
               $scope.f = file;
               $scope.errFile = errFiles && errFiles[0];
               if (file) {
@@ -116,7 +114,6 @@
 
                   file.upload.then(function (response) {
                       $timeout(function () {
-                        console.log(response);
                           file.result = response.data.todo;
                           $scope.todos[index].img = response.data.todo.img;
                       });

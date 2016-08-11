@@ -15,7 +15,6 @@ module.exports = () =>{
        fs.rmdirSync(path+todo._id);
      } catch(e) {
        try{
-         console.log('PASTAAAAAAAA FDP');
          fs.mkdirSync(path+todo._id, 777);
 
        }
