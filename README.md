@@ -5,10 +5,10 @@
 This is Project have any version to server and client:
 
 #### Server
-- nodejs
-- java
+- nodejs + express
+- java + spring
 
 #### client
 - angularjs
-- reactjs
+- reactjs + flux
 - android
