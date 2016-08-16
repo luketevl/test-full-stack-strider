@@ -1,10 +1,14 @@
 import React from 'react';
+import * as TodoActions from "../actions/TodoActions";
 
 export default class Todo extends React.Component{
   constructor(props){
-    super();
+    super(props);
   }
 
+  _onToggleComplete(){
+    TodoActions.createTodo(this.props);
+  }
   render(){
     const { checked, name, img, _id} = this.props;
     let checkedText = '';
@@ -18,7 +22,7 @@ export default class Todo extends React.Component{
         <span class="mdl-list__item-primary-content">
           <i class="material-icons  mdl-list__item-avatar">person</i>
           <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
-            <input class="mdl-textfield__input" type="text" value={name} focus="focused" readonly={readonly} />
+            <input class="mdl-textfield__input" type="text" value={name} focus="focused" readonly={readonly} onChange={this._onToggleComplete} />
             <label class="mdl-textfield__label" for="name">Todo name...</label>
           </div>
         </span>

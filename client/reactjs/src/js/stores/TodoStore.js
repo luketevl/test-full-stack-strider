@@ -5,19 +5,47 @@ import dispatcher from '../dispatcher';
 class TodoStore extends EventEmitter{
   constructor(){
     super();
-    this.todos        = [];
+    this.todos        = [
+            {
+               _id: "58abbdfd0f635ec7502381bf",
+               checked: true,
+               img: "",
+               name: "Make bed"
+          },
+          {
+             _id: "57abbdfd0f635ec7502381bf",
+             checked: true,
+             img: "",
+             name: "Cokkie"
+        },
+        {
+           _id: "59abbdfd0f635ec7502381bf",
+           checked: true,
+           img: "",
+           name: "Supermarket"
+      }
+        ];
     this.get          = this.get.bind(this);
     this.handleAction = this.handleAction.bind(this);
   }
 
-  create(todo){
+  create(){
+    let todo = {
+      name: '',
+      img: '',
+      checked: true
+    };
+    this.todos.push(todo);
+    this.emit('change');
+  }
+  save(todo){
     this.todos.push(todo);
     this.emit('change');
   }
   delete(todo){
     this.emit('change');
   }
-  get(todos){
+  get(){
     return this.todos;
   }
   handleAction(action){
@@ -29,7 +57,7 @@ class TodoStore extends EventEmitter{
         this.delete(action.todo);
       }
       case "FETCH_TODO":{
-        
+        this.get();
       }
     }
   }
