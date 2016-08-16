@@ -5,7 +5,7 @@ const componentToHex = c => {
   return hexam.length == 1 ? "0" + hexam : hexam;
 }
 
-const rgbToHex = (r, g, b) =>  "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+const rgbToHex = (r, g, b) =>  `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
 
 let img = new Image();
 img.src = './img/img.png';
