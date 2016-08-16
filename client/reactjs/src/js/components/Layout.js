@@ -12,7 +12,7 @@ export default class Layout extends React.Component{
   }
   render(){
     return(
-      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <div className="mdl-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title">TODO LIST</span>
