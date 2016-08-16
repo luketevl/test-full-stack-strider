@@ -25,7 +25,7 @@ class TodoStore extends EventEmitter{
            name: "Supermarket"
       }
         ];
-    this.get          = this.get.bind(this);
+
     this.handleAction = this.handleAction.bind(this);
   }
 
@@ -49,9 +49,10 @@ class TodoStore extends EventEmitter{
     return this.todos;
   }
   handleAction(action){
+    console.log(action);
     switch(action.type){
       case "CREATE_TODO":{
-        this.create(action.todo);
+        this.create();
       }
       case "DELETE_TODO":{
         this.delete(action.todo);

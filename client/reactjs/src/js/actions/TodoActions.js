@@ -7,10 +7,9 @@ export function deleteTodo(todo){
   });
 };
 
-export function createTodo(todo){
+export function createTodo(){
   dispatcher.dispatch({
     type: "CREATE_TODO",
-    todo
   });
 };
 
