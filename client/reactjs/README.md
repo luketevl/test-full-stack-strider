@@ -12,7 +12,9 @@ npm install
 ```
 
 ## Run server
-
+```
+npm run dev
+```
 # Setup
 - gulp
 - browserify
