@@ -5,23 +5,15 @@ import Todos from './Todos';
 export default class Layout extends React.Component{
   constructor(){
     super();
-    this.teste = this.teste.bind(this);
-  }
-  teste(){
-    console.log(9);
   }
   render(){
     return(
-      <div className="mdl-layout mdl-layout--fixed-header">
-        <header className="mdl-layout__header">
-          <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title">TODO LIST</span>
-          </div>
+      <div>
+        <header>
+          <h1>Todo List</h1>
         </header>
-        <main className="mdl-layout__content">
-          <div className="page-content">
+        <main>
           <Todos />
-          </div>
         </main>
       </div>
     );

@@ -30,14 +30,14 @@ export default class Todos extends React.Component{
   render(){
     let todosComponents = this._getTodos();
     return(
-      <div>
-        <ul className="demo-list-control mdl-list">
+      <section>
+        <ul>
           {todosComponents}
         </ul>
-        <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onClick={this.createTodo}>
+        <button onClick={this.createTodo}>
           <i className="material-icons">add</i>
         </button>
-      </div>
+      </section>
     );
   }
 }
