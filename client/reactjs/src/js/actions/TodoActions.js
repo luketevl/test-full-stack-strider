@@ -13,8 +13,9 @@ export function createTodo(){
   });
 };
 
-export function getTodos(){
+export function getTodos(todos){
   dispatcher.dispatch({
-    type: "FETCH_TODO"
+    type: "FETCH_TODO",
+    todos
   });
 }

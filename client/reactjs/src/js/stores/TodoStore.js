@@ -5,27 +5,6 @@ import dispatcher from '../dispatcher';
 class TodoStore extends EventEmitter{
   constructor(){
     super();
-    this.todos        = [
-            {
-               _id: "58abbdfd0f635ec7502381bf",
-               checked: true,
-               img: "",
-               name: "Make bed"
-          },
-          {
-             _id: "57abbdfd0f635ec7502381bf",
-             checked: true,
-             img: "",
-             name: "Cokkie"
-        },
-        {
-           _id: "59abbdfd0f635ec7502381bf",
-           checked: true,
-           img: "",
-           name: "Supermarket"
-      }
-        ];
-
     this.handleAction = this.handleAction.bind(this);
   }
 
@@ -33,8 +12,9 @@ class TodoStore extends EventEmitter{
     let todo = {
       name: '',
       img: '',
-      checked: true
+      checked: false
     };
+    console.log("Method create"+this.todos);
     this.todos.push(todo);
     this.emit('change');
   }
@@ -43,9 +23,17 @@ class TodoStore extends EventEmitter{
     this.emit('change');
   }
   delete(todo){
+    console.log('Method Delete');
+    console.log(todo);
+    this.emit('change');
+  }
+  setAll(todos){
+    this.todos = todos;
+    console.log("Method SET ALL"+this.todos);
     this.emit('change');
   }
   get(){
+    console.log("Method GET"+this.todos);
     return this.todos;
   }
   handleAction(action){
@@ -53,13 +41,17 @@ class TodoStore extends EventEmitter{
     switch(action.type){
       case "CREATE_TODO":{
         this.create();
+        break;
       }
       case "DELETE_TODO":{
         this.delete(action.todo);
+        break;
       }
       case "FETCH_TODO":{
-        this.get();
+        this.setAll(action.todos);
+        break;
       }
+      default: return true;
     }
   }
 }

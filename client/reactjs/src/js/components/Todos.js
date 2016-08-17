@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Todo from './Todo';
+import * as TodoApi from "../api/TodoAPI";
 
 import * as TodoActions from "../actions/TodoActions";
 import TodoStore from "../stores/TodoStore";
@@ -9,8 +10,9 @@ export default class Todos extends React.Component{
   constructor(){
     super();
     this.state = {
-      todos: TodoStore.get()
+      todos: []
     };
+    TodoApi.get();
     this.createTodo = this.createTodo.bind(this);
   }
   _getTodos(){
