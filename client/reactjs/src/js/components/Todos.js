@@ -10,13 +10,13 @@ export default class Todos extends React.Component{
   constructor(){
     super();
     this.state = {
-      todos: []
+      todos: [],
     };
     TodoApi.get();
     this.createTodo = this.createTodo.bind(this);
   }
   _getTodos(){
-    return this.state.todos.map(todo => <Todo key={todo._id} {...todo} />);
+    return this.state.todos.map((todo, index) => <Todo key={todo._id} {...todo} />);
   }
   createTodo(){
     TodoActions.createTodo();
@@ -36,7 +36,7 @@ export default class Todos extends React.Component{
         <ul>
           {todosComponents}
         </ul>
-        <button onClick={this.createTodo}>
+        <button className="circle" onClick={this.createTodo}>
           <i className="material-icons">add</i>
         </button>
       </section>

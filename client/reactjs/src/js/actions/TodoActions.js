@@ -1,9 +1,9 @@
 import dispatcher from "../dispatcher";
 
-export function deleteTodo(todo){
+export function deleteTodo(index){
   dispatcher.dispatch({
     type: "DELETE_TODO",
-    todo,
+    todoIndex: index,
   });
 };
 

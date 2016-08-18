@@ -13,12 +13,41 @@ export function get(){
   });
 };
 
-export function delete(todo){
-  request.del(`${Config.URL_SERVER}/${todo._id}`).end((err, resp) => {
+export function deleteTodo(todo){
+  request.del(`${Config.URL_SERVER}${todo._id}`).end((err, resp) => {
     if(err){
       console.log(err);
       return err;
     }
-    TodoActions.deleteTodo(todo);
+    this.get();
   });
+}
+
+export function saveTodo(todo){
+  console.log('Save Todo API');
+  console.log(todo);
+  if(todo._id != '' && todo._id !== undefined){
+    request.put(Config.URL_SERVER)
+      .type('form')
+      .send(todo)
+      .end((err, resp) => {
+        if(err) {
+          console.log(err);
+          return err;
+        }
+        this.get();
+      });
+  }
+  else{
+    request.post(Config.URL_SERVER)
+      .type('form')
+      .send(todo)
+      .end((err, resp) => {
+        if(err) {
+          console.log(err);
+          return err;
+        }
+        this.get();
+      });
+  }
 }

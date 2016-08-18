@@ -22,18 +22,20 @@ class TodoStore extends EventEmitter{
     this.todos.push(todo);
     this.emit('change');
   }
-  delete(todo){
-    console.log('Method Delete');
-    console.log(todo);
-    this.emit('change');
+  delete(index){
+
+    //this.emit('change');
   }
   setAll(todos){
     this.todos = todos;
-    console.log("Method SET ALL"+this.todos);
+    console.log(todos);
+    console.log("Method SET ALL");
+    console.log(this.todos);
     this.emit('change');
   }
   get(){
-    console.log("Method GET"+this.todos);
+    console.log("Method GET")
+    console.log(this.todos);
     return this.todos;
   }
   handleAction(action){
@@ -44,7 +46,7 @@ class TodoStore extends EventEmitter{
         break;
       }
       case "DELETE_TODO":{
-        this.delete(action.todo);
+        this.delete(action.todoIndex);
         break;
       }
       case "FETCH_TODO":{

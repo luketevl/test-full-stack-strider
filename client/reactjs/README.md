@@ -19,7 +19,8 @@ npm run dev
 - gulp
 - browserify
 - reactify
-- Material Designe Lite
+- Sass
+- webpack
 
 ## Plugins
 - Flux
