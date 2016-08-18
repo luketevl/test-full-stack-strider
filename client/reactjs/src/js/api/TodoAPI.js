@@ -25,10 +25,12 @@ export function deleteTodo(todo){
 
 export function saveTodo(todo){
   console.log('Save Todo API');
+  if(todo.files != undefined){
+    todo.files = [];
+  }
   console.log(todo);
   if(todo._id != '' && todo._id !== undefined){
     request.put(Config.URL_SERVER)
-      .type('form')
       .send(todo)
       .end((err, resp) => {
         if(err) {

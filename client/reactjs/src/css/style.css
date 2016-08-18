@@ -1,13 +1,16 @@
 * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-family: 'Open Sans', sans-serif; }
 
 header {
   background: #119546;
   padding: 20px 13px;
   color: #fff; }
   header h1 {
-    vertical-align: middle; }
+    vertical-align: middle;
+    text-transform: uppercase;
+    font-size: 1em; }
 
 main {
   padding: 10px 50px; }
@@ -17,12 +20,17 @@ ul {
   ul li {
     margin: 10px 0;
     height: 60px;
-    display: block; }
+    display: block;
+    padding: 10px; }
+    ul li:hover {
+      border-left: 3px solid #e0dada; }
+    ul li button i {
+      margin-left: 8px; }
 
 input[type="text"] {
   border: 0;
   border-bottom: 2px solid #cecece;
-  width: 90%;
+  width: 80%;
   padding: 15px 5px;
   font-size: 1em; }
   input[type="text"]:read-only {
@@ -30,6 +38,14 @@ input[type="text"] {
   input[type="text"]:focus:not(:read-only) {
     outline: none;
     border-bottom: 2px solid #119546; }
+input[type="file"] {
+  position: absolute;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  width: 1px;
+  height: 23px; }
 
 button {
   border: 0;
@@ -37,10 +53,21 @@ button {
   button.circle {
     background-color: #2c3e50;
     border-radius: 50%;
-    padding: 15px; }
+    padding: 15px;
+    float: right; }
     button.circle i {
       color: #fff; }
     button.circle:hover {
       background-color: #34495e; }
+  button.upload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px; }
+
+img {
+  border-radius: 50%;
+  border: 0;
+  height: 40px;
+  width: 40px; }
 
 /*# sourceMappingURL=style.css.map */

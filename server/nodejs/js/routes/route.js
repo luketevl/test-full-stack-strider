@@ -52,6 +52,7 @@ module.exports = (app) => {
     let {name, checked, _id} = data;
     let file;
     let result_todo;
+    console.log(req.files);
     if(req.files){
       file = req.files.file;
     }
