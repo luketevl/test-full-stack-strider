@@ -39,11 +39,13 @@ export default class Todo extends React.Component{
   }
 
   _onChangeCheck(evt){
-    console.log(evt.target);
+    console.log(evt.target.checked);
     this.setState({
       checked: evt.target.checked
     });
-    const todo = this.state;
+    let todo = this.state;
+    todo.checked = evt.target.checked;
+    console.log(todo);
     this._eventTimer(todo);
     console.log(this.state);
   }
